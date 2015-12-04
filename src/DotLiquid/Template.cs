@@ -53,7 +53,7 @@ namespace DotLiquid
 			Tags.TryGetValue(name, out result);
 			return result;
 		}
-
+		public static bool AllowAllTypes { get; set; }
 		/// <summary>
 		/// Pass a module with filter methods which should be available
 		///  to all liquid views. Good for registering the standard library

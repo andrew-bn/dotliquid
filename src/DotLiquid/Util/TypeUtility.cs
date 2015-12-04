@@ -9,9 +9,13 @@ namespace DotLiquid.Util
 	{
 		private const TypeAttributes AnonymousTypeAttributes = TypeAttributes.NotPublic;
 
+		public static bool IsSupportedType(Type t)
+		{
+			return Template.AllowAllTypes || IsAnonymousType(t);
+		}
 		public static bool IsAnonymousType(Type t)
 		{
-			return (t.GetTypeInfo().GetCustomAttributes(typeof(CompilerGeneratedAttribute), false).FirstOrDefault() as CompilerGeneratedAttribute)!= null
+			return (t.GetTypeInfo().GetCustomAttributes(typeof(CompilerGeneratedAttribute), false).FirstOrDefault() as CompilerGeneratedAttribute) != null
 				&& t.GetTypeInfo().IsGenericType
 					&& (t.Name.Contains("AnonymousType") || t.Name.Contains("AnonType"))
 						&& (t.Name.StartsWith("<>") || t.Name.StartsWith("VB$"))

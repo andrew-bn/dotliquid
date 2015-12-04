@@ -357,7 +357,7 @@ namespace DotLiquid
 			if ((obj is IList) && (part is int))
 				return true;
 
-			if (TypeUtility.IsAnonymousType(obj.GetType()) && obj.GetType().GetProperty((string) part) != null)
+			if (TypeUtility.IsSupportedType(obj.GetType()) && obj.GetType().GetProperty((string) part) != null)
 				return true;
 
 			if ((obj is IIndexable) && ((IIndexable) obj).ContainsKey((string) part))
@@ -373,7 +373,7 @@ namespace DotLiquid
 				value = ((IDictionary) obj)[key];
 			else if (obj is IList)
 				value = ((IList) obj)[(int) key];
-			else if (TypeUtility.IsAnonymousType(obj.GetType()))
+			else if (TypeUtility.IsSupportedType(obj.GetType()))
 				value = obj.GetType().GetProperty((string) key).GetValue(obj, null);
 			else if (obj is IIndexable)
 				value = ((IIndexable) obj)[key];
@@ -387,7 +387,7 @@ namespace DotLiquid
 					((IDictionary) obj)[key] = newValue;
 				else if (obj is IList)
 					((IList) obj)[(int) key] = newValue;
-				else if (TypeUtility.IsAnonymousType(obj.GetType()))
+				else if (TypeUtility.IsSupportedType(obj.GetType()))
 					obj.GetType().GetProperty((string) key).SetValue(obj, newValue, null);
 				else
 					throw new NotSupportedException();
@@ -419,10 +419,11 @@ namespace DotLiquid
 				return obj;
 			if (obj is Guid)
 				return obj;
-			if (TypeUtility.IsAnonymousType(obj.GetType()))
+			if (TypeUtility.IsSupportedType(obj.GetType()))
 				return obj;
 			if (obj is KeyValuePair<string, object>)
 				return obj;
+
             var safeTypeTransformer = Template.GetSafeTypeTransformer(obj.GetType());
 			if (safeTypeTransformer != null)
 				return safeTypeTransformer(obj);
