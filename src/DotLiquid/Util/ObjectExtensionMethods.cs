@@ -53,7 +53,7 @@ namespace DotLiquid.Util
 			if (methodInfo != null)
 				return methodInfo.Invoke(value, parameters);
 
-			PropertyInfo propertyInfo = type.GetProperty(member);
+			PropertyInfo propertyInfo = type.GetProperty(member, BindingFlags.Public|BindingFlags.Instance);
 			if (propertyInfo != null)
 				return propertyInfo.GetValue(value, null);
 

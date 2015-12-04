@@ -2,7 +2,9 @@ using System;
 
 namespace DotLiquid.Exceptions
 {
+#if !DNXCORE50
 	[Serializable]
+#endif
 	public class FilterNotFoundException : LiquidException
 	{
 		public FilterNotFoundException(string message, FilterNotFoundException innerException)

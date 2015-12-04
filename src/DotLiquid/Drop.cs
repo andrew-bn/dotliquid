@@ -162,7 +162,7 @@ namespace DotLiquid
 
 		internal override TypeResolution CreateTypeResolution(Type type)
 		{
-			return new TypeResolution(type, mi => typeof(Drop).IsAssignableFrom(mi.DeclaringType.BaseType));
+			return new TypeResolution(type, mi => typeof(Drop).IsAssignableFrom(mi.DeclaringType.GetTypeInfo().BaseType));
 		}
     }
 

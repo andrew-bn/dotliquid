@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -406,7 +407,7 @@ namespace DotLiquid
 				return obj;
 			if (obj is IEnumerable)
 				return obj;
-			if (obj.GetType().IsPrimitive)
+			if (obj.GetType().GetTypeInfo().IsPrimitive)
 				return obj;
 			if (obj is decimal)
 				return obj;
@@ -425,9 +426,9 @@ namespace DotLiquid
             var safeTypeTransformer = Template.GetSafeTypeTransformer(obj.GetType());
 			if (safeTypeTransformer != null)
 				return safeTypeTransformer(obj);
-            if (obj.GetType().GetCustomAttributes(typeof(LiquidTypeAttribute), false).Any())
+            if (obj.GetType().GetTypeInfo().GetCustomAttributes(typeof(LiquidTypeAttribute), false).Any())
             {
-                var attr = (LiquidTypeAttribute)obj.GetType().GetCustomAttributes(typeof(LiquidTypeAttribute), false).First();
+                var attr = (LiquidTypeAttribute)obj.GetType().GetTypeInfo().GetCustomAttributes(typeof(LiquidTypeAttribute), false).First();
                 return new DropProxy(obj, attr.AllowedMembers);
             }
             

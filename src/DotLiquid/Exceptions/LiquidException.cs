@@ -2,8 +2,10 @@ using System;
 
 namespace DotLiquid.Exceptions
 {
+#if !DNXCORE50
 	[Serializable]
-	public abstract class LiquidException : ApplicationException
+#endif
+	public abstract class LiquidException : Exception
 	{
 		protected LiquidException(string message, Exception innerException)
 			: base(message, innerException)

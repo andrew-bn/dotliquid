@@ -1,0 +1,33 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "DotLiquid Class Library",
+  "authors": [ "user" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "net451": { },
+    "dnx451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-rc2-23523",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-rc2-23523",
+        "System.Runtime.Extensions": "4.0.11-beta-23516",
+        "System.Threading": "4.0.11-beta-23516",
+        "System.IO": "4.0.11-beta-23516",
+        "System.Text.RegularExpressions": "4.0.11-beta-23516",
+        "System.IO.FileSystem": "4.0.0",
+        "System.Private.ServiceModel": "4.0.0-beta-23019",
+        "System.ServiceModel.Primitives": "4.0.0-beta-23019",
+        "System.Reflection.Extensions": "4.0.1-beta-23516",
+        "System.Reflection.TypeExtensions": "4.0.1-beta-23409"
+
+      }
+    }
+  },
+  "dependencies": {
+    "System.Resources.ResourceManager": "4.0.1-beta-23516"
+  }
+}

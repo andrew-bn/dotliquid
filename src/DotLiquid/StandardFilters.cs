@@ -80,10 +80,13 @@ namespace DotLiquid
 		{
 			if (input.IsNullOrWhiteSpace())
 				return input;
-
+#if !DNXCORE50
 			return string.IsNullOrEmpty(input)
 				? input
 				: CultureInfo.CurrentCulture.TextInfo.ToTitleCase(input);
+#else
+			return input;
+#endif 
 		}
 
 		public static string Escape(string input)
