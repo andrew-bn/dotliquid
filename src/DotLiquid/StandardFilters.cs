@@ -80,7 +80,7 @@ namespace DotLiquid
 		{
 			if (input.IsNullOrWhiteSpace())
 				return input;
-#if !DNXCORE50
+#if !NETCORE
 			return string.IsNullOrEmpty(input)
 				? input
 				: CultureInfo.CurrentCulture.TextInfo.ToTitleCase(input);
@@ -307,9 +307,9 @@ namespace DotLiquid
 			if (string.IsNullOrEmpty(property))
 				ary.Sort();
 			else if ((ary.All(o => o is IDictionary)) && ((IDictionary) ary.First()).Contains(property))
-				ary.Sort((a, b) => Comparer.Default.Compare(((IDictionary) a)[property], ((IDictionary) b)[property]));
+				ary.Sort((a, b) => Comparer<object>.Default.Compare(((IDictionary) a)[property], ((IDictionary) b)[property]));
 			else if (ary.All(o => o.RespondTo(property)))
-				ary.Sort((a, b) => Comparer.Default.Compare(a.Send(property), b.Send(property)));
+				ary.Sort((a, b) => Comparer<object>.Default.Compare(a.Send(property), b.Send(property)));
 
 			return ary;
 		}

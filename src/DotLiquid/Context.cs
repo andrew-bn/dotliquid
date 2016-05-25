@@ -357,7 +357,7 @@ namespace DotLiquid
 			if ((obj is IList) && (part is int))
 				return true;
 
-			if (TypeUtility.IsSupportedType(obj.GetType()) && obj.GetType().GetProperty((string) part) != null)
+			if (TypeUtility.IsSupportedType(obj.GetType()) && obj.GetType().GetTypeInfo().GetProperty((string) part) != null)
 				return true;
 
 			if ((obj is IIndexable) && ((IIndexable) obj).ContainsKey((string) part))
@@ -374,7 +374,7 @@ namespace DotLiquid
 			else if (obj is IList)
 				value = ((IList) obj)[(int) key];
 			else if (TypeUtility.IsSupportedType(obj.GetType()))
-				value = obj.GetType().GetProperty((string) key).GetValue(obj, null);
+				value = obj.GetType().GetTypeInfo().GetProperty((string) key).GetValue(obj, null);
 			else if (obj is IIndexable)
 				value = ((IIndexable) obj)[key];
 			else
@@ -388,7 +388,7 @@ namespace DotLiquid
 				else if (obj is IList)
 					((IList) obj)[(int) key] = newValue;
 				else if (TypeUtility.IsSupportedType(obj.GetType()))
-					obj.GetType().GetProperty((string) key).SetValue(obj, newValue, null);
+					obj.GetType().GetTypeInfo().GetProperty((string) key).SetValue(obj, newValue, null);
 				else
 					throw new NotSupportedException();
 				return newValue;

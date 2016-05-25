@@ -21,7 +21,7 @@ namespace DotLiquid
 		{
 			Hash result = new Hash();
 			if (anonymousObject != null)
-				foreach (PropertyInfo property in anonymousObject.GetType().GetProperties())
+				foreach (PropertyInfo property in anonymousObject.GetType().GetTypeInfo().GetProperties())
 					result[property.Name] = property.GetValue(anonymousObject, null);
 			return result;
 		}

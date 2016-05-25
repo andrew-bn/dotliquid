@@ -2,7 +2,7 @@ using System;
 
 namespace DotLiquid.Exceptions
 {
-#if !DNXCORE50
+#if !NETCORE
 	[Serializable]
 #endif
 	public abstract class LiquidException : Exception

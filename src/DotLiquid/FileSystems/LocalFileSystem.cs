@@ -46,7 +46,7 @@ namespace DotLiquid.FileSystems
 				: Path.Combine(Root, string.Format("_{0}.liquid", templatePath));
 
 			string escapedPath = Root.Replace(@"\", @"\\").Replace("(", @"\(").Replace(")", @"\)");
-#if !DNXCORE50
+#if !NETCORE
 			if (!Regex.IsMatch(Path.GetFullPath(fullPath), string.Format("^{0}", escapedPath)))
 				throw new FileSystemException(Liquid.ResourceManager.GetString("LocalFileSystemIllegalTemplatePathException"), Path.GetFullPath(fullPath));
 #else

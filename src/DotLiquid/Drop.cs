@@ -20,9 +20,9 @@ namespace DotLiquid
 			// defined at or above the base Drop class.
             const BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance;
     		CachedMethods = GetMemberDictionary(
-				type.GetMethods(bindingFlags).Where(mi => mi.GetParameters().Length == 0),
+				type.GetTypeInfo().GetMethods(bindingFlags).Where(mi => mi.GetParameters().Length == 0),
 				mi => filterMemberCallback(mi));
-            CachedProperties = GetMemberDictionary(type.GetProperties(bindingFlags),
+            CachedProperties = GetMemberDictionary(type.GetTypeInfo().GetProperties(bindingFlags),
 				mi => filterMemberCallback(mi));
         }
 
@@ -162,7 +162,7 @@ namespace DotLiquid
 
 		internal override TypeResolution CreateTypeResolution(Type type)
 		{
-			return new TypeResolution(type, mi => typeof(Drop).IsAssignableFrom(mi.DeclaringType.GetTypeInfo().BaseType));
+			return new TypeResolution(type, mi => typeof(Drop).GetTypeInfo().IsAssignableFrom(mi.DeclaringType.GetTypeInfo().BaseType));
 		}
     }
 

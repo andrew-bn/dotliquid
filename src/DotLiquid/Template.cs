@@ -113,7 +113,7 @@ namespace DotLiquid
             // Check for interfaces
 		    foreach (var interfaceType in ValueTypeTransformers.Where(x => ((Type)x.Key).GetTypeInfo().IsInterface))
 		    {
-                if (type.GetInterfaces().Contains(interfaceType.Key))
+                if (type.GetTypeInfo().GetInterfaces().Contains(interfaceType.Key))
                     return interfaceType.Value;
 		    }
 
@@ -129,7 +129,7 @@ namespace DotLiquid
             // Check for interfaces
             foreach (var interfaceType in SafeTypeTransformers.Where(x => ((Type)x.Key).GetTypeInfo().IsInterface))
             {
-                if (type.GetInterfaces().Contains(interfaceType.Key))
+                if (type.GetTypeInfo().GetInterfaces().Contains(interfaceType.Key))
                     return interfaceType.Value;
             }
 
